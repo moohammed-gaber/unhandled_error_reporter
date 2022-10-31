@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:error_monitoring/enums/risk_level_enum.dart';
-import 'package:error_monitoring/error_capture.dart';
-import 'package:error_monitoring/error_dto.dart';
-import 'package:error_monitoring/remote_monitor.dart';
-import 'package:error_monitoring/risk_level_determiner.dart';
-import 'package:error_monitoring/thrown_api_error.dart';
+import 'package:unhandled_error_reporter/enums/risk_level_enum.dart';
+import 'package:unhandled_error_reporter/error_capture.dart';
+import 'package:unhandled_error_reporter/error_dto.dart';
+import 'package:unhandled_error_reporter/remote_monitor.dart';
+import 'package:unhandled_error_reporter/risk_level_determiner.dart';
+import 'package:unhandled_error_reporter/thrown_api_error.dart';
 import 'package:flutter/material.dart';
 
 class Failure {}

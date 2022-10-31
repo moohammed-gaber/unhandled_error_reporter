@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:error_monitoring/error_dto.dart';
-import 'package:error_monitoring/remote_monitor.dart';
-import 'package:error_monitoring/risk_level_determiner.dart';
-import 'package:error_monitoring/thrown_api_error.dart';
+import 'package:unhandled_error_reporter/error_dto.dart';
+import 'package:unhandled_error_reporter/remote_monitor.dart';
+import 'package:unhandled_error_reporter/risk_level_determiner.dart';
+import 'package:unhandled_error_reporter/thrown_api_error.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
