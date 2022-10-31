@@ -14,7 +14,7 @@ class RemoteReporter extends IRemoteReporter {
   // any uncaught error will be on this object
   Future<void> report(UnhandledError error) async {
     // call super if you want print [error] on the console
-    super.monitor(error);
+    super.report(error);
     // Api call that's send error to backend should write there.
   }
 }
