@@ -1,3 +1,6 @@
+## 1.0.4
+- Edit example.
+
 ## 1.0.3
 - Export library.
 
