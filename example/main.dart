@@ -26,9 +26,7 @@ class RemoteReporter extends IRemoteReporter {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final remoteReporter = RemoteReporter();
-  final riskLevelDeterminer = RiskLevelDeterminer();
-  final errorCapture = ErrorCapture(remoteReporter, riskLevelDeterminer);
+  final errorCapture = ErrorCapture(RemoteReporter(), RiskLevelDeterminer());
   await errorCapture.init();
   runZonedGuarded(() {
     WidgetsFlutterBinding.ensureInitialized();
@@ -47,9 +45,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(floatingActionButton: FloatingActionButton(onPressed: () {
-        throwError();
-      })),
+      home: Scaffold(floatingActionButton: FloatingActionButton(onPressed: throwError),
     );
   }
 }
