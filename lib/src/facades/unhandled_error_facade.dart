@@ -1,10 +1,10 @@
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:unhandled_error_reporter/device_info.dart';
-import 'package:unhandled_error_reporter/enums/platform.dart';
-import 'package:unhandled_error_reporter/enums/risk_level_enum.dart';
-import 'package:unhandled_error_reporter/error_dto.dart';
-import 'package:unhandled_error_reporter/remote_monitor.dart';
-import 'package:unhandled_error_reporter/risk_level_determiner.dart';
+import 'package:unhandled_error_reporter/src/device_info/device_info.dart';
+import 'package:unhandled_error_reporter/src/enums/platform.dart';
+import 'package:unhandled_error_reporter/src/enums/risk_level_enum.dart';
+import 'package:unhandled_error_reporter/src/dtos/error_dto.dart';
+import 'package:unhandled_error_reporter/src/interfaces/remote_monitor.dart';
+import 'package:unhandled_error_reporter/src/interfaces/risk_level_determiner.dart';
 
 class UnhandledErrorFacade {
   UnhandledErrorFacade(

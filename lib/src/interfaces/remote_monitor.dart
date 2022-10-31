@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:unhandled_error_reporter/thrown_api_error.dart';
+import 'package:unhandled_error_reporter/src/facades/unhandled_error_facade.dart';
 
 
 // final Dio dio;

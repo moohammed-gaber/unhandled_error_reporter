@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:unhandled_error_reporter/enums/platform.dart';
+import 'package:unhandled_error_reporter/src/enums/platform.dart';
 import 'package:flutter/foundation.dart';
 
 class MonitorDeviceFactory {
