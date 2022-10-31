@@ -1,6 +1,6 @@
 name: unhandled_error_reporter
 description: Report Any unhandled exception/error/failure to backend service as [ stacktrace, Device information, Risk level of this error ].
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/moohammed-gaber/unhandled_error_reporter
 
 environment:
