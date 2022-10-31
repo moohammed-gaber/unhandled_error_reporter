@@ -14,14 +14,14 @@ class ErrorCapture {
   ) {
     facade = UnhandledErrorFacade(_riskLevelDeterminer, _remoteMonitor);
   }
+  final IRiskLevelDeterminer _riskLevelDeterminer;
+  final IRemoteReporter _remoteMonitor;
+  late final UnhandledErrorFacade facade;
+
 
   Future<void> init() {
     return facade.init();
   }
-
-  final IRiskLevelDeterminer _riskLevelDeterminer;
-  final IRemoteReporter _remoteMonitor;
-  late final UnhandledErrorFacade facade;
 
   Future<void> handleAsyncDartError(
     Object exception,
