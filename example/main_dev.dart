@@ -38,7 +38,8 @@ void _runAsync() {
     print('---------');
 */
 
-    print(x.traces[0].toString());
+    // print(x.traces[0].toString());
+    print(x.terse.terse.terse.terse);
 /*
     print('---------');
 

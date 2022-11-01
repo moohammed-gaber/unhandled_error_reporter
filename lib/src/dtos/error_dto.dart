@@ -6,7 +6,7 @@ class ErrorDto {
   final StackTrace? stackTrace;
   final Object errorObject;
 
-  List<Trace> getFormattedStackTrace() {
-    return stackTrace == null ? [] : Chain.forTrace(stackTrace!).traces;
+  List<String> getFormattedStackTrace() {
+    return stackTrace == null ? [] : Chain.forTrace(stackTrace!).traces.map((e) => e.toString()).toList();
   }
 }
