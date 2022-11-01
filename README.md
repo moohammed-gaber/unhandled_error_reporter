@@ -1,6 +1,6 @@
 # Unhandled Error Reporter
 
-[![Pub](https://img.shields.io/pub/v/before_publish_cli.svg)](https://pub.dev/packages/before_publish_cli)
+[![Pub](https://img.shields.io/pub/v/before_publish_cli.svg)](https://pub.dev/packages/unhandled_error_reporter)
 
 ### Report Any unhandled exception/error/failure to backend service as [ stacktrace, Device information, Risk level of this error ]
 
