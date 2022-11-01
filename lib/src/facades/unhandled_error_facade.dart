@@ -18,10 +18,12 @@ class UnhandledErrorFacade {
 
   late final DeviceInfo _deviceInformation;
   late final BaseDeviceInformation _deviceInfo;
+  late final Versions? versions;
 
-  Future<void> init() async {
+  Future<void> init({Versions? versions}) async {
     _deviceInformation = MonitorDeviceFactory(DeviceInfoPlugin()).create();
     _deviceInfo = await _deviceInformation.getDeviceInfo();
+    this.versions = versions;
   }
 
   UnhandledError get(
@@ -29,15 +31,24 @@ class UnhandledErrorFacade {
   ) {
     final riskLevel = _riskLevelDeterminer.determine(error);
     return UnhandledError(
+        versions: versions,
         deviceInfo: _deviceInfo.deviceInfo,
-        platform: _deviceInfo.devicePlatform,
+        platform: _deviceInfo.platform,
         riskLevel: riskLevel,
         errorDto: error);
   }
 
-  monitor(ErrorDto error) {
+  Future<void> monitor(ErrorDto error) {
     return _remoteMonitor.report(get(error));
   }
+}
+
+class Versions {
+  final String? app;
+  final String? backend;
+  final String? sqlite;
+
+  Versions({this.app, this.backend, this.sqlite});
 }
 
 class UnhandledError {
@@ -45,10 +56,12 @@ class UnhandledError {
   final DevicePlatform platform;
   final RiskLevel riskLevel;
   final BaseDeviceInfo deviceInfo;
+  final Versions? versions;
 
   UnhandledError(
       {required this.platform,
       required this.riskLevel,
+      required this.versions,
       required this.deviceInfo,
       required this.errorDto});
 

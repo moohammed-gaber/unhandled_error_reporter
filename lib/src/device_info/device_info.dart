@@ -2,12 +2,15 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
 import 'package:unhandled_error_reporter/src/enums/platform.dart';
 import 'package:flutter/foundation.dart';
 
 class MonitorDeviceFactory {
   final DeviceInfoPlugin _deviceInfoPlugin;
+
   MonitorDeviceFactory(this._deviceInfoPlugin);
+
   DeviceInfo create() {
     if (kIsWeb) {
       return WebDeviceInformation(_deviceInfoPlugin);
@@ -21,12 +24,21 @@ class MonitorDeviceFactory {
   }
 }
 
+enum DeviceType {
+  emulator,
+  physical,
+  jailbroken,
+}
+
 class BaseDeviceInformation<T extends BaseDeviceInfo> {
   final T deviceInfo;
-  final DevicePlatform devicePlatform;
+  final DevicePlatform platform;
+  final bool isUnlocked;
 
   BaseDeviceInformation(
-      {required this.deviceInfo, required this.devicePlatform});
+      {required this.deviceInfo,
+      required this.isUnlocked,
+      required this.platform});
 }
 
 abstract class DeviceInfo<T extends BaseDeviceInfo> {
@@ -35,6 +47,10 @@ abstract class DeviceInfo<T extends BaseDeviceInfo> {
   DeviceInfo(this.deviceInfoPlugin);
 
   Future<BaseDeviceInformation<T>> getDeviceInfo();
+
+  Future<bool> isUnlocked() =>
+      FlutterJailbreakDetection.jailbroken; // android only.
+
 }
 
 class AndroidDeviceInformation extends DeviceInfo<AndroidDeviceInfo> {
@@ -44,7 +60,9 @@ class AndroidDeviceInformation extends DeviceInfo<AndroidDeviceInfo> {
   Future<BaseDeviceInformation<AndroidDeviceInfo>> getDeviceInfo() async {
     final result = await deviceInfoPlugin.androidInfo;
     return BaseDeviceInformation(
-        deviceInfo: result, devicePlatform: DevicePlatform.android);
+        isUnlocked: await isUnlocked(),
+        deviceInfo: result,
+        platform: DevicePlatform.android);
   }
 }
 
@@ -55,8 +73,14 @@ class WebDeviceInformation extends DeviceInfo<WebBrowserInfo> {
   Future<BaseDeviceInformation<WebBrowserInfo>> getDeviceInfo() async {
     final result = await deviceInfoPlugin.webBrowserInfo;
     return BaseDeviceInformation(
-        deviceInfo: result, devicePlatform: DevicePlatform.web);
+        isUnlocked: await isUnlocked(),
+        deviceInfo: result,
+        platform: DevicePlatform.web);
   }
+
+  @override
+  Future<bool> isUnlocked() => Future.value(false); // android only.
+
 }
 
 class IosDeviceInformation extends DeviceInfo<IosDeviceInfo> {
@@ -66,6 +90,8 @@ class IosDeviceInformation extends DeviceInfo<IosDeviceInfo> {
   Future<BaseDeviceInformation<IosDeviceInfo>> getDeviceInfo() async {
     final result = await deviceInfoPlugin.iosInfo;
     return BaseDeviceInformation(
-        deviceInfo: result, devicePlatform: DevicePlatform.ios);
+        isUnlocked: await isUnlocked(),
+        deviceInfo: result,
+        platform: DevicePlatform.ios);
   }
 }

@@ -40,6 +40,7 @@ class ErrorCapture {
     print("handle Flutter Error");
     final stackTrace = details.stack;
     final exception = details.exception;
+
     facade.monitor(ErrorDto(
       errorObject: exception,
       stackTrace: stackTrace,
