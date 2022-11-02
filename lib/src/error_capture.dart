@@ -28,7 +28,6 @@ class ErrorCapture {
     Object exception,
     StackTrace stackTrace,
   ) async {
-    print("handle Async Dart Error");
     facade.monitor(ErrorDto(
       errorFrom: ErrorFrom.asyncDartCode,
       errorObject: exception,
@@ -39,7 +38,6 @@ class ErrorCapture {
   Future<void> handleFlutterError(
     FlutterErrorDetails details,
   ) async {
-    print("handle Flutter Error");
     final stackTrace = details.stack;
     final exception = details.exception;
 

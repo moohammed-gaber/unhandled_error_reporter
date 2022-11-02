@@ -21,7 +21,6 @@ class RemoteReporter extends IRemoteReporter {
   @override
   Future<void> report(UnhandledError error) async {
     super.report(error);
-    print("Remote Monitor");
   }
 }
 
