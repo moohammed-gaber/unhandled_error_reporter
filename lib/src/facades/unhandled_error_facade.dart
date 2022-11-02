@@ -32,7 +32,7 @@ class UnhandledErrorFacade {
     final riskLevel = _riskLevelDeterminer.determine(error);
     return UnhandledError(
         versions: versions,
-        deviceInfo: _deviceInfo.deviceInfo,
+        deviceInfo: _deviceInfo,
         platform: _deviceInfo.platform,
         riskLevel: riskLevel,
         errorDto: error);
@@ -55,7 +55,7 @@ class UnhandledError {
   final ErrorDto errorDto;
   final DevicePlatform platform;
   final RiskLevel riskLevel;
-  final BaseDeviceInfo deviceInfo;
+  final BaseDeviceInformation deviceInfo;
   final Versions? versions;
 
   UnhandledError(
