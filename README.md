@@ -46,17 +46,18 @@ Future<void> main() async {
   final errorCapture = ErrorCapture(remoteReporter, riskLevelDeterminer);
   // should call init
   await errorCapture.init();
-  
-  runZonedGuarded(() {
-    WidgetsFlutterBinding.ensureInitialized();
-    // our first handler 
-    FlutterError.onError = errorCapture.handleFlutterError;
-    runApp(MyApp());
-    // our second handler 
-  }, errorCapture.handleAsyncDartError);
-  
+  // our flutter handler 
+  FlutterError.onError = errorCapture.handleFlutterError;
+  // our dart error handler 
+  PlatformDispatcher.instance.onError = (error, stack) {
+    errorCapture.handleAsyncDartError(error, stack);
+    return true;
+  };
+  runApp(MyApp());
+
 }
 ```
 
 ## Buy me a coffee
+
 <a href="https://www.buymeacoffee.com/mogaber" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
