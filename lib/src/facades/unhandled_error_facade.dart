@@ -33,7 +33,6 @@ class UnhandledErrorFacade {
     return UnhandledError(
         versions: versions,
         deviceInfo: _deviceInfo,
-        platform: _deviceInfo.platform,
         riskLevel: riskLevel,
         errorDto: error);
   }
@@ -53,23 +52,29 @@ class Versions {
 
 class UnhandledError {
   final ErrorDto errorDto;
-  final DevicePlatform platform;
   final RiskLevel riskLevel;
   final BaseDeviceInformation deviceInfo;
   final Versions? versions;
 
   UnhandledError(
-      {required this.platform,
-      required this.riskLevel,
+      {required this.riskLevel,
       required this.versions,
       required this.deviceInfo,
       required this.errorDto});
 
   Map<String, dynamic> toJson() => {
         'stackTrace': errorDto.stackTrace,
-        'deviceInfo': deviceInfo.data,
         'failure': errorDto.errorObject,
+        'errorFrom': errorDto.errorFrom,
         'riskLevel': riskLevel.name,
-        'platform': platform,
+        'platform': deviceInfo.platform.name,
+        'appVersion': versions?.app,
+        'backendVersion': versions?.backend,
+        'sqliteVersion': versions?.sqlite,
+        'deviceInfo.deviceInfo.data': deviceInfo.deviceInfo.data,
+        'deviceInfo.platform.name': deviceInfo.platform.name,
+
+
+
       };
 }
