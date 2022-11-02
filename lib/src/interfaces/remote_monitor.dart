@@ -11,8 +11,8 @@ class IRemoteReporter {
     log('Hi iam Function that monitor error to backend');
     log('Here is Failure ${reportedData.errorDto.errorObject}');
     log('Here is riskLevel ${reportedData.riskLevel}');
-    log('Here is platform ${reportedData.platform}');
-    log('Here is DeviceInfo ${reportedData.deviceInfo.data}');
+    log('Here is platform ${reportedData.deviceInfo.platform.name}');
+    log('Here is DeviceInfo data ${reportedData.deviceInfo.deviceInfo.data}');
     log('Here is StackTrace ${reportedData.errorDto.stackTrace}');
 
     return Future.value();
