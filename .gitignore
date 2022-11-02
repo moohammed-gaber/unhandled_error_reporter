@@ -28,3 +28,5 @@ migrate_working_dir/
 .dart_tool/
 .packages
 build/
+./example/main_dev.dart
+./example/main_test.dart

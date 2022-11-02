@@ -1,36 +1,12 @@
 // import 'dart:async';
-// import 'dart:async';
+//
+// import 'package:catcher/catcher.dart';
 // import 'package:flutter/material.dart';
-// import 'package:unhandled_error_reporter/unhandled_error_reporter.dart';
-//
-// import 'package:stack_trace/stack_trace.dart';
-//
-// Future<void> main() async {
-//   runZonedGuarded(() {
-// /*
-//     FlutterError.onError = (
-//       _,
-//     ) {
-//       print("FlutterError");
-//     };
-// */
-//     test();
-//   }, (_, __) {
-//     print("DartError");
-//   });
-//
-// }
-//
-// Future<void> test() async {
-//   await Future.delayed(Duration(seconds: 1));
-//   throw Exception();
-// }
-//
-// // Copyright 2021 Fredrick Allan Grott. All rights reserved.
-// // Use of this source code is governed by a BSD-style
-// // license that can be found in the LICENSE file.
-// //
-//
+// import 'package:reactive_one/src/app.dart';
+// import 'package:reactive_one/src/infrastructure/app_exceptions_helper/catcher.dart';
+// import 'package:reactive_one/src/infrastructure/app_vars.dart';
+// import 'package:reactive_one/src/infrastructure/build_modes.dart';
+// import 'package:reactive_one/src/infrastructure/logging/initlogger.dart';
 //
 // void mainDelegate() => main();
 //
@@ -100,14 +76,13 @@
 //       print: (self, parent, zone, line) async {
 //         // Include a timestamp and the name of the App
 //         final messageToLog = "[${DateTime.now()}] $appTitleDebug $line $zone";
-//
 //         // Also print the message in the "Debug Console"
 //         // but it's ony an info message and contains no
 //         // privacy prohibited stuff
+//
 //         parent.print(zone, messageToLog);
 //       },
 //     ),
 //   );
 //
 // }
-//

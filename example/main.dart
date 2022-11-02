@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:unhandled_error_reporter/unhandled_error_reporter.dart';
 
@@ -28,11 +29,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final errorCapture = ErrorCapture(RemoteReporter(), RiskLevelDeterminer());
   await errorCapture.init();
-  runZonedGuarded(() {
-    WidgetsFlutterBinding.ensureInitialized();
-    FlutterError.onError = errorCapture.handleFlutterError;
-    runApp(MyApp());
-  }, errorCapture.handleAsyncDartError);
+  FlutterError.onError = errorCapture.handleFlutterError;
+  PlatformDispatcher.instance.onError = (error, stack) {
+    errorCapture.handleAsyncDartError(error, stack);
+    return true;
+  };
 }
 
 class MyApp extends StatelessWidget {
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(floatingActionButton: FloatingActionButton(onPressed: throwError),
+        home: Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: throwError),
     ));
   }
 }

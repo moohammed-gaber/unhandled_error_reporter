@@ -1,0 +1,1 @@
+enum ErrorFrom { asyncDartCode, flutterCode }
